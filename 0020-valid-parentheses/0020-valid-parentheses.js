@@ -28,6 +28,6 @@ var isValid = function(s) {
             else stack.pop()
         }
     })
-    if(flag) return true
+    if(stack.length===0 && flag) return true
     else return false
 };
