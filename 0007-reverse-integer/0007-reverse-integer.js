@@ -3,12 +3,12 @@
  * @return {number}
  */
 var reverse = function(x) {
-    let original=x;
+    let isNegative=x<0;
     let r;
     let newNumber=0;
-    if(x.toString()[0]==="-"){
+    if(x<0){
         x=x.toString().slice(1);
-        x=JSON.parse(x)
+        x=parseInt(x)
     }
     while(x>0){
         r=x%10;
@@ -16,14 +16,7 @@ var reverse = function(x) {
         console.log(r)
         newNumber=newNumber*10+r;
     }
-    console.log(newNumber,original)
-    if(newNumber > 2 ** 31 - 1) return 0;
-    if(original.toString()[0]==="-"){
-        console.log("inside if")
-        return JSON.parse(`-${newNumber}`);
-    }
-    else {
-        console.log("inside else");
-        return newNumber;
-    }
+    if(newNumber > 2 ** (31) - 1) return 0;
+    if(isNegative) return newNumber*-1
+    else return newNumber
 };
