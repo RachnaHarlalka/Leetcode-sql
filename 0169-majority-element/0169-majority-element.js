@@ -3,18 +3,19 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    const map = new Map()
-    for(let i=0;i<nums.length;i++){
-        const item = nums[i];
-        let val = map.get(item)
-        if(val!==undefined){
-            map.set(item,val+=1)
+    let majority = nums[0];
+    let vote = 1;
+    for(let i=1;i<nums.length;i++){
+        if(nums[i]===majority){
+            vote++
         }
-        else map.set(item,1)
-    }
-    for(const [key,value] of map){
-        if(map.get(key)>=nums.length/2){
-            return key
+        else {
+            vote--
+            if(vote<0){
+                majority=nums[i]
+            }
         }
     }
+    return majority
+
 };
